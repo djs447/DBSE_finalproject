@@ -1,0 +1,13 @@
+<h1> First Week Update </h1>
+
+This is the first week's progress on my final project so far. I've found a few resources online  going over what should be included in a blockchain ledger and how these should be constructed, as well as a few tutorials on where to get started that I've been watching.
+
+I started off by reviewing the code of some of open-source blockchain projects however this was kind of overwhelming. It does look like there are resources available for beginners who are looking to build their own blockchains so this is what I've been following so far. So far the main things I've built are the Block object and larger Blockchain object. The Blockchain object manages the overall chain and starts by creating the genesis block. Within the Block object, the main information that each block keeps track of is its position within the chain, the timestamp of when it was created / the hash was generated, the transactional data it contains, the specific hash to that block and the hash of the previous block. For the genesis block, the hash of the previous block is set to '0'.
+
+The hash for each block is generated using the hashlib library, specifically the SHA-256 hash algorithm. For this project I was looking into putting together my own hashing algorithm and what that would require however after discovering how involved this process would be I decided it would be a better to put more time into the final project by using existing libraries that are available.
+
+The last area of this code that I was troubleshooting was the section used to save the Blockchain data into a 'chaindata' directory. For a very large or commercial block chain this save feature might be unwieldy however this makes sure a record of the blockchain is maintained if the process is ever interrupted. It should be working now but it required some modifications to complete. I still need to implement the saving of other individual blocks however the genesis block was a start for now.
+
+I was hoping to make more progress in the first week however between the quizzes, the proposal not being formally accepted until partway through the week, and the submission being due on 4/1 this was overall an abbreviated week. I'll be able to make much more progress this week hopefully with additional time. 
+
+I think going forward I'll need to break objects out into their own files (ie. 'Block.py', 'Blockchain.py', etc.) because the current main.py is starting to get verbose however its a learning process.
