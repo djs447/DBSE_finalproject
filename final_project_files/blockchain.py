@@ -10,6 +10,10 @@ class Blockchain(object):
             print("This blockchain is empty.")
             return True #an empty chain isn't invalid
         else:
+            if(not self.blocks[0].is_valid(self)):
+                print("Is the genesis block valid?")
+                print("No.")
+                return False
             prev = self.blocks[0]
             for i, block in enumerate(self.blocks[1:]):
                 curr = block

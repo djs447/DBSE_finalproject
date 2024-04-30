@@ -2,7 +2,9 @@ from blockchain import Blockchain
 from my_block import Block
 from my_sync import sync
 from mining import mining_input
+from initialize import initialize_blockchain
 import time
+import backup
 
 import argparse
 
@@ -57,9 +59,12 @@ def print_chain():
     return
 
 if __name__ == "__main__":
+
+    initialize_blockchain()
+    print_chain()
         
     while(True):
-        command = input("Enter the function you want to demo: (validity), (mine), (theft), (print) or (end) if you're done\n")
+        command = input("Enter the function you want to demo: (validity), (mine), (theft), (print), (store), (load) or (end) if you're done\n")
 
         if(command == 'end'):
             print('Demo ending.')
@@ -72,6 +77,10 @@ if __name__ == "__main__":
             corrupt_demo()
         elif(command == 'print'):
             print_chain()
+        elif(command == 'store'):
+            backup.backup_store()
+        elif(command == 'load'):
+            backup.backup_load()
         else:
             print("Invalid command: Please try again.")
     

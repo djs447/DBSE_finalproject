@@ -22,7 +22,6 @@ class Block:
         #Adding this in to allow potential corruption of data
 
         if(os.path.exists(filename)):
-            print("bababooey")
             os.remove(filename)
 
         with open(filename, 'w') as block_file:
@@ -54,34 +53,4 @@ class Block:
             return True
         else:
             return False
-
-
-def create_genesis_block(chain):
-    index = 0
-    timestamp = datetime.datetime.now()
-    prev_hash = '0' #arbitrary
-    data = 'First Block'
-    nonce = 0
-
-    first_block = Block(index, timestamp, prev_hash, data, nonce)
-
-    while(str(first_block.hash[0:chain.zeroes])) != '0'* chain.zeroes:
-        nonce = nonce+1
-        first_block = Block(index,timestamp,prev_hash,data,nonce)
-    #print(data)
-    return first_block
-
-if __name__ == '__main__':
-    chaindata_dir = 'chaindata/'
-    #print(chaindata_dir)
-    new_chain = Blockchain([])
-
-    if not os.path.exists(chaindata_dir):
-        os.mkdir(chaindata_dir)
-    if os.listdir(chaindata_dir)==[]:
-        #print("Flippy Flappy")
-        first_block = create_genesis_block(new_chain)
-        #print(first_block)
-        first_block.self_save()
-        #print(first_block)
 
