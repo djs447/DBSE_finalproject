@@ -1,7 +1,7 @@
 from my_block import Block
 from blockchain import Blockchain
 import datetime
-import my_sync
+# from node import *
 
 
 def mine(chain):
@@ -62,7 +62,8 @@ def mining_input(chain):
     return newblock
 
 
-if __name__ == '__main__':
-    chain = my_sync.sync()
-    new_block = mine(chain)
-    new_block.self_save()
+# if __name__ == '__main__':
+#     node_zero = Node(0)
+#     chain = node_zero.sync()
+#     new_block = mine(chain)
+#     new_block.self_save()

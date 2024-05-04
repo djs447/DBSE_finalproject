@@ -64,11 +64,15 @@ class Blockchain(object):
         
         print("Block index not found.")
         return
+    
+    def add_block(self,block):
+        self.blocks.append(block)
+        return
 
     
-    #copies the "block.py" self-save logic to create a copy of the chain locally
-    def self_save(self):
-        for block in self.blocks:
-            block.self_save()
+    #copies the self-save logic to create a copy of the whole chain locally
+    # def self_save(self):
+    #     for block in self.blocks:
+    #         block.self_save()
                 
             

@@ -8,40 +8,37 @@ from my_block import Block
 
 #each node should have a copy of the network
 
-def find_best_chain(network):
+def find_best_chain(peers):
 
-    if(len(network)==0):
-        print("There aren't any nodes in the network!")
-        return
+    if(len(peers)==0):
+        print("There currently aren't any nodes in the network!")
+        return Blockchain([])
     
     i = 0
 
     #The purpose of the below loop is to initialize best chain by searching for any valid chain in the network
 
-    while(i < len(network)):
-        if(network[i].chain.is_valid()):
-            bestchain = network[i].chain
+    while(i < len(peers)):
+        if(peers[i].blockchain.is_valid()):
+            bestchain = peers[i].blockchain
             break
         else:
             i = i+1
     
-    if(i >= len(network)):
+    if(i >= len(peers)):
         print("There are no valid chains in this network.")
-        return
+        return Blockchain([])
 
 
     # The purpose of the below loop is to find the actual best chain within the network. The consensus criteria we're
     # looking for in this case is just that the chain is valid and it is longer than our current best chain. In reality,
     # this would be a more complicated process
 
-    for node in network:
-        if(node.chain.is_valid() and len(node.chain) > len(bestchain)):
-            bestchain = node.chain
+    for node in peers:
+        if(node.blockchain.is_valid() and len(node.blockchain.blocks) > len(bestchain.blocks)):
+            bestchain = node.blockchain
     
-    # This goes back through and sets each node's chain in the network to the best chain that we've previously determined
-
-    for node in network:
-        node.chain = bestchain
+    return bestchain
     
 
         

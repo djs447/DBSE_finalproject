@@ -2,7 +2,6 @@ import os
 from blockchain import Blockchain
 from my_block import Block
 import datetime
-from my_sync import sync
 from mining import mine
 
 
@@ -22,8 +21,8 @@ def create_genesis_block(chain):
     #print(data)
     return first_block
 
-def initialize_blockchain():
-    chaindata_dir = 'chaindata/'
+def initialize_blockchain(node_id):
+    chaindata_dir = 'chaindata%s/' % (node_id)
     #print(chaindata_dir)
     new_chain = Blockchain([])
 
@@ -31,12 +30,15 @@ def initialize_blockchain():
         os.mkdir(chaindata_dir)
     if os.listdir(chaindata_dir)==[]:
         first_block = create_genesis_block(new_chain)
-        #print(first_block)
-        first_block.self_save()
         new_chain.blocks.append(first_block)
-        #print(first_block)
+        #new_chain.self_save()
+        print(first_block)
         block_one = mine(new_chain)
-        block_one.self_save()
-        new_chain = sync()
+        new_chain.blocks.append(block_one)
+        #new_chain.self_save()
         block_two = mine(new_chain)
-        block_two.self_save()
+        new_chain.blocks.append(block_two)
+        #new_chain.self_save()
+        print(new_chain)
+
+    return new_chain

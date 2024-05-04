@@ -13,19 +13,6 @@ class Block:
         result = hashlib.sha256(self.block_header().encode())
         #print(result)
         return result.hexdigest()
-    
-    def self_save(self): #saves the blockchain state locally to the node
-        chaindata_dir = 'chaindata'
-        index_string = str(self.index).zfill(6) #adds leading 0s to the filename
-        filename = '%s/%s.json' % (chaindata_dir, index_string)
-
-        #Adding this in to allow potential corruption of data
-
-        if(os.path.exists(filename)):
-            os.remove(filename)
-
-        with open(filename, 'w') as block_file:
-            json.dump({"index":self.index,"timestamp":str(self.timestamp),"data":self.data,"nonce":self.nonce,"hash":self.hash,"prev_hash":self.prev_hash}, block_file)
 
     def __init__(self, index, timestamp, prev_hash, data, nonce, hash = None):
         self.index = index

@@ -1,9 +1,9 @@
 import os
 import shutil
 
-def backup_store():
-    source_folder = 'chaindata/'
-    destination_folder = 'backup_chaindata/'
+def backup_store(nodeid):
+    source_folder = 'chaindata%s/' % (nodeid)
+    destination_folder = 'backup_chaindata%s/' % (nodeid)
     #check that the backup folder exists
     if not os.path.exists(destination_folder):
         os.makedirs(destination_folder)
@@ -15,9 +15,9 @@ def backup_store():
         shutil.copy2(source_file, destination_file)
         print(f"Copied {source_file} to {destination_file}")
 
-def backup_load():
-    source_folder = 'backup_chaindata/'
-    destination_folder = 'chaindata/'
+def backup_load(nodeid):
+    source_folder = 'backup_chaindata%s/' % (nodeid)
+    destination_folder = 'chaindata%s/' % (nodeid)
     #check that the backup folder exists
     if not os.path.exists(destination_folder):
         os.makedirs(destination_folder)
