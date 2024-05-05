@@ -23,6 +23,7 @@ def find_best_chain(peers):
             bestchain = peers[i].blockchain
             break
         else:
+            print("Node %s is not using a valid blockchain!" % (peers[i].node_id))
             i = i+1
     
     if(i >= len(peers)):

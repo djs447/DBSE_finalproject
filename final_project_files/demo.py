@@ -26,6 +26,7 @@ def mining_demo(node):
 
     new_block = mining_input(chain)
     chain.add_block(new_block)
+    node.blockchain = chain
     node.chain_save(chain)
 
     #chain = node.sync()
@@ -52,6 +53,7 @@ def corrupt_demo(node):
     broken_block = chain.find_by_index(index)
     broken_block.data = new_data
     node.chain_save(chain)
+    node.blockchain = chain
 
     #chain = sync()
 
@@ -105,6 +107,7 @@ if __name__ == "__main__":
             backup.backup_store(zero_node.node_id)
         elif(command == 'load'):
             backup.backup_load(zero_node.node_id)
+            zero_node.blockchain = zero_node.sync()
         elif(command == 'consensus'):
             consensus_demo(zero_node)
         else:

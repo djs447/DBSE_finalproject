@@ -15,6 +15,8 @@ class Node:
         self.peers.append(peer)
     
     def receive_chain(self, chain):
+        print("receive chain test")
+        print(self.node_id)
         if(chain.is_valid() and len(chain.blocks) > len(self.blockchain.blocks)):
             self.blockchain = chain
             self.chain_save(self.blockchain)
