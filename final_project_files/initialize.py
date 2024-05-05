@@ -39,6 +39,6 @@ def initialize_blockchain(node_id):
         block_two = mine(new_chain)
         new_chain.blocks.append(block_two)
         #new_chain.self_save()
-        print(new_chain)
+        #print(new_chain)
 
     return new_chain

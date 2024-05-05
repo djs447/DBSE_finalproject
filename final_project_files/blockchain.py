@@ -22,20 +22,20 @@ class Blockchain(object):
                 if( (prev.index+1) != (curr.index) ):
                     #print("Previous:", prev)
                     #print("Current:", curr)
-                    print("No.")
+                    print("This blockchain is not valid.")
                     return False # index is out out order, invalid
                 print("Yes.")
                 print("Does the prev_hash value (%s) stored in the current block ACTUALLY match the previous hash (%s)?" % (curr.prev_hash, prev.hash))
                 if( prev.hash != curr.prev_hash):
                     #print("Previous:", prev)
                     #print("Current:", curr)
-                    print("No.")
+                    print("This blockchain is not valid.")
                     return False #think this and the index above should replace the timestamp logic
                 print("Yes.")
                 print("Does the hash value match our proof of work concept?")
                 if( not curr.is_valid(self)):
                     print(curr.hash)
-                    print("No.")
+                    print("This blockchain is not valid.")
                     return False # something is wrong with the hash
                 print("Yes.")
                 prev = curr
